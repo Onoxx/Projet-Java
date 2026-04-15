@@ -1,17 +1,26 @@
 package MVC.View;
 
+import MVC.Controller.LoginPanelController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class LoginPanel extends JPanel {
     private MainWindow mw;
+    private JLabel loginText;
     private FormPanel formPanel;
     private ButtonsPanel buttonsPanel;
+    private LoginPanelController loginPanelController;
 
     public LoginPanel(MainWindow mw) {
+        setPreferredSize(new Dimension(350, 120));
         this.mw = mw;
+        loginPanelController = new LoginPanelController(this);
 
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout(0,15));
+
+        loginText = new JLabel("Connect to NexaPC", SwingConstants.CENTER);
+        this.add(loginText, BorderLayout.NORTH);
 
         formPanel = new FormPanel();
         this.add(formPanel, BorderLayout.CENTER);
@@ -20,7 +29,7 @@ public class LoginPanel extends JPanel {
         this.add(buttonsPanel, BorderLayout.SOUTH);
     }
 
-    private class FormPanel extends JPanel {
+    public class FormPanel extends JPanel {
         private JLabel userText;
         private JTextField userField;
         private JLabel passwordText;
@@ -33,16 +42,23 @@ public class LoginPanel extends JPanel {
             passwordText = new JLabel("Password : ", SwingConstants.CENTER);
             passwordField = new JPasswordField();
 
-            this.setLayout(new GridLayout(2,2, 5, 5));
+            this.setLayout(new GridLayout(2,2));
 
             this.add(userText);
             this.add(userField);
             this.add(passwordText);
             this.add(passwordField);
         }
-    }
 
-    private class ButtonsPanel extends JPanel {
+        public JTextField getUserField() {
+            return userField;
+        }
+
+        public JPasswordField getPasswordField() {
+            return passwordField;
+        }
+    }
+    public class ButtonsPanel extends JPanel {
         private JButton resetButton;
         private JButton validateButton;
 
@@ -53,6 +69,25 @@ public class LoginPanel extends JPanel {
             this.setLayout(new FlowLayout());
             this.add(resetButton);
             this.add(validateButton);
+
+            resetButton.addActionListener(loginPanelController);
+            validateButton.addActionListener(loginPanelController);
         }
+
+        public JButton getResetButton() {
+            return resetButton;
+        }
+
+        public JButton getValidateButton() {
+            return validateButton;
+        }
+    }
+
+    public FormPanel getFormPanel() {
+        return formPanel;
+    }
+
+    public ButtonsPanel getButtonsPanel() {
+        return buttonsPanel;
     }
 }
