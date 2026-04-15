@@ -25,6 +25,10 @@ public class MainWindow extends JFrame {
 
         mainContainer.add(new JLabel("Bienvenue chez NexaPC, le constructeur pc de vos streamers préférés!", SwingConstants.CENTER), BorderLayout.NORTH);
 
+        JPanel wrapper = new JPanel();
+        wrapper.add(new LoginPanel(this));
+        mainContainer.add(wrapper, BorderLayout.CENTER);
+
         setVisible(true);
     }
 }
