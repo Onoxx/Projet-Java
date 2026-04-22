@@ -15,7 +15,7 @@ public class LoginPanel extends JPanel {
     public LoginPanel(MainWindow mw) {
         setPreferredSize(new Dimension(350, 120));
         this.mw = mw;
-        loginPanelController = new LoginPanelController(this);
+        loginPanelController = new LoginPanelController(this, mw);
 
         this.setLayout(new BorderLayout(0,15));
 
@@ -61,17 +61,21 @@ public class LoginPanel extends JPanel {
     public class ButtonsPanel extends JPanel {
         private JButton resetButton;
         private JButton validateButton;
+        private JButton backButton;
 
         public ButtonsPanel() {
             resetButton = new JButton("Reset");
             validateButton = new JButton("Validate");
+            backButton = new JButton("Back");
 
             this.setLayout(new FlowLayout());
             this.add(resetButton);
             this.add(validateButton);
+            this.add(backButton);
 
             resetButton.addActionListener(loginPanelController);
             validateButton.addActionListener(loginPanelController);
+            backButton.addActionListener(loginPanelController);
         }
 
         public JButton getResetButton() {
