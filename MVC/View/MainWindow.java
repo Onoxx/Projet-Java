@@ -7,6 +7,9 @@ import java.awt.event.WindowEvent;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
+    private JPanel centerPanel;
+    private HomePanel homePanel;
+
     public MainWindow() {
         super("NexaPC");
         setBounds(0, 0, 1280, 720);
@@ -25,10 +28,20 @@ public class MainWindow extends JFrame {
 
         mainContainer.add(new JLabel("Bienvenue chez NexaPC, le constructeur pc de vos streamers préférés!", SwingConstants.CENTER), BorderLayout.NORTH);
 
-        JPanel wrapper = new JPanel(new GridBagLayout());
-        wrapper.add(new LoginPanel(this));
-        mainContainer.add(wrapper, BorderLayout.CENTER);
+        homePanel = new HomePanel(this);
+
+        centerPanel = new JPanel();
+        centerPanel.add(homePanel);
+        mainContainer.add(centerPanel, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public JPanel getCenterPanel(){
+        return centerPanel;
+    }
+
+    public HomePanel getHomePanel(){
+        return homePanel;
     }
 }
