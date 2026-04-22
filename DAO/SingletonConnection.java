@@ -3,7 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class SingetonConnection {
+public class SingletonConnection {
     private static Connection uniqueConnection;
     public static Connection getInstance(){
         if(uniqueConnection == null) {

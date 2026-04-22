@@ -11,7 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class UserDataAccessImpl implements UserDataAccess {
     private Connection connection;
     public UserDataAccessImpl() {
-        connection = SingetonConnection.getInstance();
+        connection = SingletonConnection.getInstance();
     }
 
     @Override
