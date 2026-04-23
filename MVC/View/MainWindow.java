@@ -8,7 +8,6 @@ import java.awt.event.WindowEvent;
 public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
-    private HomePanel homePanel;
 
     public MainWindow() {
         super("NexaPC");
@@ -26,12 +25,9 @@ public class MainWindow extends JFrame {
         mainContainer.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
 
-        mainContainer.add(new JLabel("Bienvenue chez NexaPC, le constructeur pc de vos streamers préférés!", SwingConstants.CENTER), BorderLayout.NORTH);
-
-        homePanel = new HomePanel(this);
+        mainContainer.add(new JLabel("Bienvenue chez NexaPC, le configurateur numéro 1 en Belgique!", SwingConstants.CENTER), BorderLayout.NORTH);
 
         centerPanel = new JPanel();
-        centerPanel.add(homePanel);
         mainContainer.add(centerPanel, BorderLayout.CENTER);
 
         setVisible(true);
@@ -39,9 +35,5 @@ public class MainWindow extends JFrame {
 
     public JPanel getCenterPanel(){
         return centerPanel;
-    }
-
-    public HomePanel getHomePanel(){
-        return homePanel;
     }
 }
