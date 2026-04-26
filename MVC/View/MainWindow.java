@@ -29,6 +29,7 @@ public class MainWindow extends JFrame {
 
         centerPanel = new JPanel();
         mainContainer.add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add(new AddProcessorPanel(this));
 
         setVisible(true);
     }
