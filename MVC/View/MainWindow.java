@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
+    private JMenu appMenu, configuratorMenu, componentMenu, userMenu;
+    private JMenuItem home, quit, processor;
 
     public MainWindow() {
         super("NexaPC");
@@ -21,6 +23,33 @@ public class MainWindow extends JFrame {
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/icon.png")));
 
+        //JMenuBar Setup
+        JMenuBar menuBar = new JMenuBar();
+        appMenu = new JMenu("Menu");
+        home = new JMenuItem("Home");
+        quit = new JMenuItem("Quit");
+        quit.addActionListener(e -> {System.exit(0);});
+        appMenu.setMnemonic('M');
+        appMenu.add(home);
+        appMenu.add(quit);
+        menuBar.add(appMenu);
+
+        configuratorMenu = new JMenu("Configurator");
+        configuratorMenu.setMnemonic('C');
+        menuBar.add(configuratorMenu);
+
+        componentMenu = new JMenu("Components");
+        processor = new JMenuItem("Processors");
+        componentMenu.setMnemonic('C');
+        componentMenu.add(processor);
+        menuBar.add(componentMenu);
+
+        userMenu = new JMenu("Users");
+        userMenu.setMnemonic('U');
+        menuBar.add(userMenu);
+
+        setJMenuBar(menuBar);
+
         mainContainer = this.getContentPane();
         mainContainer.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
@@ -28,7 +57,8 @@ public class MainWindow extends JFrame {
         mainContainer.add(new JLabel("Bienvenue chez NexaPC, le configurateur numéro 1 en Belgique!", SwingConstants.CENTER), BorderLayout.NORTH);
 
         centerPanel = new JPanel();
-        mainContainer.add(centerPanel, BorderLayout.CENTER);
+        mainContainer.add(new HomePanel(), BorderLayout.CENTER);
+        //mainContainer.add(centerPanel, BorderLayout.CENTER);
 
         setVisible(true);
     }
