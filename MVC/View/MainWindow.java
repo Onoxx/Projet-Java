@@ -2,6 +2,8 @@ package MVC.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import Toolkit.UIMode;
@@ -30,26 +32,31 @@ public class MainWindow extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         appMenu = new JMenu("Menu");
-        appMenu.setMnemonic('M');
+        appMenu.setMnemonic(KeyEvent.VK_1);
+        appMenu.setDisplayedMnemonicIndex(0);
         home = new JMenuItem("Home");
         quit = new JMenuItem("Quit");
         quit.addActionListener(e -> {System.exit(0);});
+        quit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
         appMenu.add(home);
         appMenu.add(quit);
         menuBar.add(appMenu);
 
         configuratorMenu = new JMenu("Configurator");
-        configuratorMenu.setMnemonic('C');
+        configuratorMenu.setMnemonic(KeyEvent.VK_2);
+        configuratorMenu.setDisplayedMnemonicIndex(0);
         menuBar.add(configuratorMenu);
 
         componentMenu = new JMenu("Components");
         processor = new JMenuItem("Processors");
-        componentMenu.setMnemonic('C');
+        componentMenu.setMnemonic(KeyEvent.VK_3);
+        componentMenu.setDisplayedMnemonicIndex(0);
         componentMenu.add(processor);
         menuBar.add(componentMenu);
 
         userMenu = new JMenu("Users");
-        userMenu.setMnemonic('U');
+        userMenu.setMnemonic(KeyEvent.VK_4);
+        userMenu.setDisplayedMnemonicIndex(0);
         menuBar.add(userMenu);
 
         menuBar.add(Box.createHorizontalGlue()); //colle les éléments a droite de la menuBar
