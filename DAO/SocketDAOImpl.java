@@ -2,7 +2,6 @@ package DAO;
 
 import Exceptions.AllComponentsException;
 import MVC.Model.Socket;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

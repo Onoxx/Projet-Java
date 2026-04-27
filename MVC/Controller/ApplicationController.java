@@ -26,6 +26,16 @@ public class ApplicationController {
     public void addProcessor(Processor processor) {
         processorManager.addProcessor(processor);
     }
+    public void removeProcessor(String processorName) {
+        processorManager.removeProcessor(processorName);
+    }
+    public Processor getProcessor(String processorName) {
+        return processorManager.getProcessor(processorName);
+    }
+    public void updateProcessor(String processorToModify, Processor processor) {
+        processorManager.updateProcessor(processorToModify, processor);
+    }
+
     public ArrayList<Socket> getAllSockets() {
         return socketManager.getAllSockets();
     }

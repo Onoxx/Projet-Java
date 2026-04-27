@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
@@ -58,10 +59,23 @@ public class MainWindow extends JFrame {
 
         mainContainer.add(new HomePanel(), BorderLayout.CENTER);
 
-        setVisible(true);
-    }
+        processor.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new ReadProcessorsPanel(this));
+            this.revalidate();
+            this.repaint();
+        });
+        home.addActionListener(e -> {
+            boolean alreadyHome = Arrays.stream(this.getContentPane().getComponents())
+                    .anyMatch(c -> c instanceof HomePanel);
+            if (!alreadyHome) {
+                this.getContentPane().removeAll();
+                this.getContentPane().add(new HomePanel(), BorderLayout.CENTER);
+                this.revalidate();
+                this.repaint();
+            }
+        });
 
-    public JPanel getCenterPanel(){
-        return centerPanel;
+        setVisible(true);
     }
 }

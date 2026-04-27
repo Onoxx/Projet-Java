@@ -2,9 +2,7 @@ package BusinessLogic;
 
 import DAO.ProcessorDAOImpl;
 import MVC.Model.Processor;
-import MVC.Model.Socket;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class ProcessorManager {
@@ -21,4 +19,7 @@ public class ProcessorManager {
     public void addProcessor(Processor processor) {
         processorDAO.addProcessor(processor);
     }
+    public void removeProcessor(String processorName) { processorDAO.removeProcessor(processorName); }
+    public Processor getProcessor(String processorName) {return processorDAO.getProcessorByName(processorName);}
+    public void updateProcessor(String processorToModify, Processor processor) {processorDAO.updateProcessor(processorToModify, processor);}
 }
