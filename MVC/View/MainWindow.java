@@ -89,6 +89,7 @@ public class MainWindow extends JFrame {
         processor.addActionListener(e -> {
             this.getContentPane().removeAll();
             this.getContentPane().add(new ReadProcessorsPanel(this));
+            UIMode.applyCurrentTheme(this);
             this.revalidate();
             this.repaint();
         });
@@ -98,6 +99,7 @@ public class MainWindow extends JFrame {
             if (!alreadyHome) {
                 this.getContentPane().removeAll();
                 this.getContentPane().add(new HomePanel(), BorderLayout.CENTER);
+                UIMode.applyCurrentTheme(this);
                 this.revalidate();
                 this.repaint();
             }
