@@ -6,6 +6,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import Toolkit.UIMode;
 
 public class MainWindow extends JFrame {
@@ -83,14 +84,25 @@ public class MainWindow extends JFrame {
 
         mainContainer.add(new JLabel("Bienvenue chez NexaPC, le configurateur numéro 1 en Belgique!", SwingConstants.CENTER), BorderLayout.NORTH);
 
-        centerPanel = new JPanel();
         mainContainer.add(new HomePanel(), BorderLayout.CENTER);
-        //mainContainer.add(centerPanel, BorderLayout.CENTER);
+
+        processor.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new ReadProcessorsPanel(this));
+            this.revalidate();
+            this.repaint();
+        });
+        home.addActionListener(e -> {
+            boolean alreadyHome = Arrays.stream(this.getContentPane().getComponents())
+                    .anyMatch(c -> c instanceof HomePanel);
+            if (!alreadyHome) {
+                this.getContentPane().removeAll();
+                this.getContentPane().add(new HomePanel(), BorderLayout.CENTER);
+                this.revalidate();
+                this.repaint();
+            }
+        });
 
         setVisible(true);
-    }
-
-    public JPanel getCenterPanel(){
-        return centerPanel;
     }
 }
