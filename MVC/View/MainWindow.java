@@ -82,8 +82,6 @@ public class MainWindow extends JFrame {
         mainContainer.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
 
-        mainContainer.add(new JLabel("Bienvenue chez NexaPC, le configurateur numéro 1 en Belgique!", SwingConstants.CENTER), BorderLayout.NORTH);
-
         mainContainer.add(new HomePanel(), BorderLayout.CENTER);
 
         processor.addActionListener(e -> {
