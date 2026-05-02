@@ -1,12 +1,12 @@
 package BusinessLogic;
 
-import DAO.SocketDAOImpl;
+import DAO.*;
 import MVC.Model.Socket;
 
 import java.util.ArrayList;
 
 public class SocketManager {
-    private SocketDAOImpl socketDAO;
+    private SocketDAO socketDAO;
     public SocketManager() {
         this.socketDAO = new SocketDAOImpl();
     }
