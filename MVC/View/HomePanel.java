@@ -83,7 +83,7 @@ public class HomePanel extends JPanel {
 
         GradientPaint gp = new GradientPaint(
                 offset, 0, Color.CYAN,
-                offset + 200, 0, Color.MAGENTA,
+                offset + 200, 100, Color.MAGENTA,
                 true
         );
 
