@@ -3,9 +3,12 @@ package MVC.View;
 import Exceptions.FailedToRemoveComponentException;
 import MVC.Controller.ApplicationController;
 import MVC.Model.Processor;
+import Toolkit.UIMode;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -23,6 +26,7 @@ public class ReadProcessorsPanel extends JPanel {
         addButton.addActionListener(e -> {
             mainWindow.getContentPane().removeAll();
             mainWindow.getContentPane().add(new AddProcessorPanel(mainWindow));
+            UIMode.applyCurrentTheme(mainWindow);
             mainWindow.getContentPane().revalidate();
             mainWindow.getContentPane().repaint();
         });

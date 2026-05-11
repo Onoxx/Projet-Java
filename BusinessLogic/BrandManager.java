@@ -1,12 +1,12 @@
 package BusinessLogic;
 
-import DAO.BrandDAOImpl;
+import DAO.*;
 import MVC.Model.Brand;
 
 import java.util.ArrayList;
 
 public class BrandManager {
-    private BrandDAOImpl brandDAO;
+    private BrandDAO brandDAO;
     public BrandManager() {this.brandDAO = new BrandDAOImpl();}
 
     public ArrayList<Brand> getAllBrands() {

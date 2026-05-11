@@ -1,12 +1,12 @@
 package BusinessLogic;
 
-import DAO.ProcessorDAOImpl;
+import DAO.*;
 import MVC.Model.Processor;
 
 import java.util.ArrayList;
 
 public class ProcessorManager {
-    private ProcessorDAOImpl processorDAO;
+    private ProcessorDAO processorDAO;
 
     public ProcessorManager() {
         this.processorDAO = new ProcessorDAOImpl();

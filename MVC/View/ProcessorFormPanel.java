@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
+import Toolkit.UIMode;
 
 public class ProcessorFormPanel extends JPanel {
     private JPanel formPanel, buttonsPanel;
@@ -207,6 +208,7 @@ public class ProcessorFormPanel extends JPanel {
         backButton.addActionListener(e -> {
             mainWindow.getContentPane().removeAll();
             mainWindow.add(new ReadProcessorsPanel(mainWindow));
+            UIMode.applyCurrentTheme(mainWindow);
             mainWindow.repaint();
             mainWindow.revalidate();
         });
@@ -250,6 +252,7 @@ public class ProcessorFormPanel extends JPanel {
                     JOptionPane.showMessageDialog(null, "Modification du processeur réussie","Résusite", JOptionPane.INFORMATION_MESSAGE);
                     mainWindow.getContentPane().removeAll();
                     mainWindow.getContentPane().add(new ReadProcessorsPanel(mainWindow));
+                    UIMode.applyCurrentTheme(mainWindow);
                     mainWindow.revalidate();
                     mainWindow.repaint();
                 }
