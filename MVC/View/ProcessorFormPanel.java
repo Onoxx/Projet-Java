@@ -279,7 +279,11 @@ public class ProcessorFormPanel extends JPanel {
         nbCoresField.setValue(4);
         nbThreadsField.setValue(8);
         baseFrequenceField.setValue(3.0);
-        boostFrequenceField.setValue(4.5);
+        if(hasBoostFrequenceField.isSelected()){
+            boostFrequenceField.setValue(4.5);
+        }else{
+            boostFrequenceField.setValue(0);
+        }
         tdpField.setValue(65);
         priceField.setValue(250);
         hasGPUField.setSelected(false);
