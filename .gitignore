@@ -1,5 +1,6 @@
 # IntelliJ
 .idea/
+*.iml
 
 # Fichiers compilés
 out/
@@ -11,3 +12,6 @@ out/
 # OS
 .DS_Store
 Thumbs.db
+
+# ENV
+.env
