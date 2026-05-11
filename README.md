@@ -3,7 +3,7 @@ NexaPC, an app that generates a configuration of a computer based on the compone
 # Application setup
 To correctly setup the application make sure to:
 
-1. modify the .env example to your correct login.
+1. add the .env to the root of project by following the pattern on .env.example (or else the app won't connect).
 2. correctly setup the libs directory by going into : File -> Project Structure -> Dependencies -> Add -> Jar or Directories -> And select the whole libs directory.
 3. running the code to make sure everything is good.
 
