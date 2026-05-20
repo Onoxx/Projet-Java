@@ -1,6 +1,7 @@
 package BusinessLogic;
 
 import MVC.Model.Processor;
+import DAO.Processor.*;
 
 import java.util.ArrayList;
 

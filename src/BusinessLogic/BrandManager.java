@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import DAO.Brand.*;
 import MVC.Model.Brand;
 
 import java.util.ArrayList;
