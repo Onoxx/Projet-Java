@@ -1,7 +1,5 @@
 package BusinessLogic;
 
-import DAO.Socket.SocketDAO;
-import DAO.Socket.SocketDAOImpl;
 import MVC.Model.Socket;
 
 import java.util.ArrayList;
