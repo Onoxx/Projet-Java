@@ -1,6 +1,7 @@
-package DAO;
+package DAO.Processor;
 
 import MVC.Model.Processor;
+
 import java.util.ArrayList;
 
 public interface ProcessorDAO {

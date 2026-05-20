@@ -1,6 +1,7 @@
-package DAO;
+package DAO.Brand;
 
 import MVC.Model.Brand;
+
 import java.util.ArrayList;
 
 public interface BrandDAO {

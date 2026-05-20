@@ -1,5 +1,6 @@
-package DAO;
+package DAO.Processor;
 
+import DAO.SingletonConnection;
 import Exceptions.*;
 import MVC.Model.Processor;
 
@@ -130,7 +131,7 @@ public class ProcessorDAOImpl implements ProcessorDAO {
                 ps.setInt(7, processor.getTdp());
                 ps.setBoolean(8, processor.isHasGPU());
                 ps.setDouble(9, processor.getPrice());
-                ps.setDate(10, new java.sql.Date(processor.getReleaseDate().getTime()));
+                ps.setDate(10, new Date(processor.getReleaseDate().getTime()));
                 ps.setString(11, processor.getBrand());
                 ps.executeUpdate();
             }catch(SQLException ex){

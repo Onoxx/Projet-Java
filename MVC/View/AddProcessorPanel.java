@@ -1,5 +1,7 @@
 package MVC.View;
+
 import MVC.Controller.ApplicationController;
+
 import javax.swing.*;
 import java.awt.*;
 
