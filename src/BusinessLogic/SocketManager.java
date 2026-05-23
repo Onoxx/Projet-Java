@@ -1,7 +1,7 @@
 package BusinessLogic;
 
-import DAO.*;
 import MVC.Model.Socket;
+import DAO.Socket.*;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,6 @@ public class SocketManager {
     }
 
     public ArrayList<Socket> getAllSockets() {
-        ArrayList<Socket> socketsList = socketDAO.getAllSockets();
-        return socketsList;
+        return socketDAO.getAllSockets();
     }
 }

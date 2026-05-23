@@ -5,12 +5,12 @@ import MVC.Controller.ApplicationController;
 import MVC.Model.Brand;
 import MVC.Model.Processor;
 import MVC.Model.Socket;
+import Toolkit.UIMode;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
-import Toolkit.UIMode;
 
 public class ProcessorFormPanel extends JPanel {
     private JPanel formPanel, buttonsPanel;

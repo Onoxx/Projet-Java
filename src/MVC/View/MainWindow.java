@@ -1,5 +1,7 @@
 package MVC.View;
 
+import Toolkit.UIMode;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -7,13 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
-import Toolkit.UIMode;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
     private JMenu appMenu, configuratorMenu, componentMenu, userMenu;
-    private JMenuItem home, quit, processor;
+    private JMenuItem home, quit, processor, openConfigurator;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -46,6 +47,15 @@ public class MainWindow extends JFrame {
         configuratorMenu = new JMenu("Configurator");
         configuratorMenu.setMnemonic(KeyEvent.VK_2);
         configuratorMenu.setDisplayedMnemonicIndex(0);
+        openConfigurator = new JMenuItem("Open");
+        configuratorMenu.add(openConfigurator);
+        openConfigurator.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new ConfiguratorPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
         menuBar.add(configuratorMenu);
 
         componentMenu = new JMenu("Components");

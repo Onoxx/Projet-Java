@@ -1,5 +1,6 @@
-package DAO;
+package DAO.Brand;
 
+import DAO.SingletonConnection;
 import Exceptions.AllComponentsException;
 import MVC.Model.Brand;
 

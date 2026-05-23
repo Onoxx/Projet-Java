@@ -1,6 +1,7 @@
-package DAO;
+package DAO.Socket;
 
 import MVC.Model.Socket;
+
 import java.util.ArrayList;
 
 public interface SocketDAO {

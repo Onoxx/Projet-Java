@@ -1,14 +1,16 @@
-package DAO;
+package DAO.Socket;
 
+import DAO.SingletonConnection;
 import Exceptions.AllComponentsException;
 import MVC.Model.Socket;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SocketDAOImpl implements SocketDAO{
+public class SocketDAOImpl implements SocketDAO {
     @Override
     public ArrayList<Socket> getAllSockets() {
         String querry = "SELECT * FROM socket";

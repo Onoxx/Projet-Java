@@ -69,4 +69,8 @@ public class Processor {
     public Date getReleaseDate() {
         return releaseDate;
     }
+    @Override
+    public String toString(){
+        return name;
+    }
 }

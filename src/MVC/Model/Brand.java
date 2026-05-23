@@ -10,7 +10,6 @@ public class Brand {
         this.website = website;
         this.country = country;
     }
-
     public String getName() {
         return name;
     }
