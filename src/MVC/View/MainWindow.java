@@ -13,8 +13,8 @@ import java.util.Arrays;
 public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
-    private JMenu appMenu, configuratorMenu, componentMenu, userMenu;
-    private JMenuItem home, quit, processor, openConfigurator;
+    private JMenu appMenu, configuratorMenu, componentMenu, searchMenu;
+    private JMenuItem home, quit, processor, openConfigurator, motherBoardRamBrand;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -65,10 +65,19 @@ public class MainWindow extends JFrame {
         componentMenu.add(processor);
         menuBar.add(componentMenu);
 
-        userMenu = new JMenu("Users");
-        userMenu.setMnemonic(KeyEvent.VK_4);
-        userMenu.setDisplayedMnemonicIndex(0);
-        menuBar.add(userMenu);
+        searchMenu = new JMenu("Search");
+        searchMenu.setMnemonic(KeyEvent.VK_4);
+        searchMenu.setDisplayedMnemonicIndex(0);
+        motherBoardRamBrand = new JMenuItem("Search motherboards");
+        motherBoardRamBrand.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new SearchMotherBoardPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+        searchMenu.add(motherBoardRamBrand);
+        menuBar.add(searchMenu);
 
         menuBar.add(Box.createHorizontalGlue()); //colle les éléments a droite de la menuBar
         uiMode = new JToggleButton("DarkMode");

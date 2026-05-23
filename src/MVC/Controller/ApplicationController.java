@@ -53,6 +53,10 @@ public class ApplicationController {
     public ArrayList<GraphicCard> getAllGraphicCards() {return graphicCardManager.getAllGraphicCards();}
     public ArrayList<Case> getAllCases() {return caseManager.getAllCases();}
     public ArrayList<MotherBoard> getAllMotherBoards() {return motherBoardManager.getAllMotherBoards();}
+    public ArrayList<MotherBoardRamBrand> searchByFormatRamMaxPrice(
+            String format, String ramName, double maxPrice) {
+        return motherBoardManager.searchByFormatRamMaxPrice(format, ramName, maxPrice);
+    }
     public ArrayList<Ram> getallRams() {return ramManager.getAllRams();}
     public ArrayList<User> getAllUsers(){return userManager.getAllUsers();}
     public ArrayList<Storage> getAllStorages(){return storageManager.getAllStorages();}
