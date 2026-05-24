@@ -2,9 +2,8 @@ package DAO.Configuration;
 
 import DAO.SingletonConnection;
 import Exceptions.FailedToAddComponentException;
-import MVC.Model.Configuration;
-import MVC.Model.CoolingConfiguration;
-import MVC.Model.StorageConfiguration;
+import Exceptions.FailedToGetComponentException;
+import MVC.Model.*;
 
 import java.sql.*;
 
@@ -86,6 +85,24 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
             ps.executeUpdate();
         }catch(SQLException ex){
             throw new FailedToAddComponentException("configuration");
+        }
+    }
+    @Override
+    public int countConfiguration(Date date1, Date date2) {
+        String querry = "SELECT COUNT(*) AS nbConfigurations FROM configuration WHERE creationDate BETWEEN ? AND ?";
+        Connection connection = SingletonConnection.getInstance();
+        try{
+            PreparedStatement ps = connection.prepareStatement(querry);
+            ps.setDate(1, new java.sql.Date(date1.getTime()));
+            ps.setDate(2, new java.sql.Date(date2.getTime()));
+            ResultSet rs = ps.executeQuery();
+            int nbConfigurations = 0;
+            if(rs.next()){
+                nbConfigurations = rs.getInt("nbConfigurations");
+            }
+            return nbConfigurations;
+        } catch (SQLException e) {
+            throw new FailedToGetComponentException("configuration");
         }
     }
 }
