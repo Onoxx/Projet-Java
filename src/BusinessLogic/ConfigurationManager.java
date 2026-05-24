@@ -6,6 +6,8 @@ import Exceptions.IncompatibleComponentException;
 import Exceptions.InvalidQuantityException;
 import MVC.Model.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -25,6 +27,10 @@ public class ConfigurationManager implements ConfigurationDAO {
     public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration) {
         configurationDAO.addCoolingConfiguration(coolingConfiguration);
     }
+    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
+        return configurationDAO.searchConfigByUserDateRGB(user, age, hasRGB);
+    }
+
     public void verifyConfiguration(Configuration configuration, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings) {
         Processor currentProcessor = configuration.getProcessor();
         GraphicCard currentGraphicCard = configuration.getGraphicCard();

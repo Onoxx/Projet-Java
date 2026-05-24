@@ -2,11 +2,11 @@ package DAO.Configuration;
 
 import DAO.SingletonConnection;
 import Exceptions.FailedToAddComponentException;
-import MVC.Model.Configuration;
-import MVC.Model.CoolingConfiguration;
-import MVC.Model.StorageConfiguration;
+import Exceptions.FailedToGetComponentException;
+import MVC.Model.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ConfigurationDAOImpl implements ConfigurationDAO {
     @Override
@@ -87,5 +87,58 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
         }catch(SQLException ex){
             throw new FailedToAddComponentException("configuration");
         }
+    }
+
+    @Override
+    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
+        String querry = "SELECT c.id AS configurationId, p.name AS processorName, p.nbCores, p.baseFrequence, p.boostFrequence, g.name AS graphicCardName, g.chipset, g.capacity AS vRamCapacity, g.vRamType, r.name AS ramName, r.capacity, r.nbRamSticks, r.type AS ramType FROM configuration c JOIN processor p ON c.processor = p.name JOIN graphicCard g ON c.graphicCard = g.name JOIN ram r ON c.ram = r.name JOIN user u ON c.user = u.id JOIN computercase cc ON c.computerCase = cc.name WHERE u.name = ? AND c.creationDate <= DATE_SUB(NOW(), INTERVAL ? MONTH) AND cc.hasRGB = ?";
+        ArrayList<ConfigurationSearch> configurationSearches = new ArrayList<>();
+        Connection connection = SingletonConnection.getInstance();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setInt(2, age);
+            preparedStatement.setBoolean(3, hasRGB);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int configurationId = resultSet.getInt("configurationId");
+
+                String processorName = resultSet.getString("processorName");
+                int nbCores = resultSet.getInt("nbCores");
+                double baseFrequence = resultSet.getDouble("baseFrequence");
+                double boostFrequence = resultSet.getDouble("boostFrequence");
+
+                String graphicCardName = resultSet.getString("graphicCardName");
+                String chipset = resultSet.getString("chipset");
+                int vRamCapacity = resultSet.getInt("vRamCapacity");
+                String vRamType = resultSet.getString("vRamType");
+
+                String ramName = resultSet.getString("ramName");
+                int capacity = resultSet.getInt("capacity");
+                int nbRamSticks = resultSet.getInt("nbRamSticks");
+                String ramType = resultSet.getString("ramType");
+
+                ConfigurationSearch configurationSearch = new ConfigurationSearch(
+                        configurationId,
+                        processorName,
+                        nbCores,
+                        baseFrequence,
+                        boostFrequence,
+                        graphicCardName,
+                        chipset,
+                        vRamCapacity,
+                        vRamType,
+                        ramName,
+                        capacity,
+                        nbRamSticks,
+                        ramType
+                );
+                configurationSearches.add(configurationSearch);
+            }
+        } catch (SQLException ex) {
+            throw new FailedToGetComponentException("configuration");
+        }
+        return configurationSearches;
     }
 }

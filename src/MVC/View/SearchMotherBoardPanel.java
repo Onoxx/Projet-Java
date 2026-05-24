@@ -100,7 +100,7 @@ public class SearchMotherBoardPanel extends JPanel {
         buttonPanel.add(validateButton);
         buttonPanel.add(resetButton);
 
-        formPanel.add(new JLabel());
+        formPanel.add(new JLabel()); //Sert a occuper une case vide du grid layout
         formPanel.add(buttonPanel);
 
         add(formPanel, BorderLayout.NORTH);

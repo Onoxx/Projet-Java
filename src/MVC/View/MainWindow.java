@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
     private JMenu appMenu, configuratorMenu, componentMenu, searchMenu;
-    private JMenuItem home, quit, processor, openConfigurator, motherBoardRamBrand;
+    private JMenuItem home, quit, processor, openConfigurator, motherBoardRamBrand, configurationSearch;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -77,6 +77,15 @@ public class MainWindow extends JFrame {
             this.repaint();
         });
         searchMenu.add(motherBoardRamBrand);
+        configurationSearch = new JMenuItem("search configurations");
+        configurationSearch.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new SearchConfigurationPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+        searchMenu.add(configurationSearch);
         menuBar.add(searchMenu);
 
         menuBar.add(Box.createHorizontalGlue()); //colle les éléments a droite de la menuBar
