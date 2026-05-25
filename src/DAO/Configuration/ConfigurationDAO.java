@@ -1,14 +1,11 @@
 package DAO.Configuration;
 
-import MVC.Model.Configuration;
-import MVC.Model.CoolingConfiguration;
-import MVC.Model.StorageConfiguration;
+import MVC.Model.*;
 
 import java.sql.Date;
+import java.util.HashMap;
 
 public interface ConfigurationDAO {
-    int addConfiguration(Configuration conf);
-    void addStorageConfiguration(StorageConfiguration conf);
-    void addCoolingConfiguration(CoolingConfiguration conf);
+    void addConfiguration(Configuration config, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings);
     int countConfiguration(Date date1, Date date2);
 }

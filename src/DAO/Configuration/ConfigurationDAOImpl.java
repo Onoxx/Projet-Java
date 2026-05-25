@@ -6,84 +6,84 @@ import Exceptions.FailedToGetComponentException;
 import MVC.Model.*;
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class ConfigurationDAOImpl implements ConfigurationDAO {
     @Override
-    public int addConfiguration(Configuration conf) {
+    public void addConfiguration(Configuration config, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings){
         String querryAddConfig =
                 "INSERT INTO configuration " +
                         "(user, processor, graphicCard, computerCase, motherBoard, ram, creationDate) " +
                         "VALUES (?,?,?,?,?,?,?)";
         Connection connection = SingletonConnection.getInstance();
         try{
-            PreparedStatement ps = connection.prepareStatement(
+            PreparedStatement psConfig = connection.prepareStatement(
                     querryAddConfig,
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
-            ps.setInt(1,conf.getUser().getId());
-            ps.setString(2,
-                    conf.getProcessor() != null
-                            ? conf.getProcessor().getName()
+            psConfig.setInt(1,config.getUser().getId());
+            psConfig.setString(2,
+                    config.getProcessor() != null
+                            ? config.getProcessor().getName()
                             : null);
 
-            ps.setString(3,
-                    conf.getGraphicCard() != null
-                            ? conf.getGraphicCard().getName()
+            psConfig.setString(3,
+                    config.getGraphicCard() != null
+                            ? config.getGraphicCard().getName()
                             : null);
 
-            ps.setString(4,
-                    conf.getComputerCase() != null
-                            ? conf.getComputerCase().getName()
+            psConfig.setString(4,
+                    config.getComputerCase() != null
+                            ? config.getComputerCase().getName()
                             : null);
 
-            ps.setString(5,
-                    conf.getMotherBoard() != null
-                            ? conf.getMotherBoard().getName()
+            psConfig.setString(5,
+                    config.getMotherBoard() != null
+                            ? config.getMotherBoard().getName()
                             : null);
 
-            ps.setString(6,
-                    conf.getRam() != null
-                            ? conf.getRam().getName()
+            psConfig.setString(6,
+                    config.getRam() != null
+                            ? config.getRam().getName()
                             : null);
 
-            ps.setDate(7, new Date(conf.getDate().getTime()));
+            psConfig.setDate(7, new Date(config.getDate().getTime()));
 
-            ps.executeUpdate();
+            psConfig.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
+            ResultSet rs = psConfig.getGeneratedKeys();
+            int configurationId = -1;
+            if (rs.next()) {
+                configurationId = rs.getInt(1);
+            }
+            String addStorageQuerry = "INSERT INTO storageConfiguration (quantity, storage, configuration) VALUES (?, ?, ?)";
+            try{
+                for(HashMap.Entry<Storage, Integer> storage : storages.entrySet()) {
+                    PreparedStatement psStorage = connection.prepareStatement(addStorageQuerry);
+                    psStorage.setInt(1, storage.getValue());
+                    psStorage.setString(2, storage.getKey().getName());
+                    psStorage.setInt(3, configurationId);
 
-            return rs.next() ? rs.getInt(1) : -1;
+                    psStorage.executeUpdate();
+                }
+            }catch(SQLException ex){
+                throw new FailedToAddComponentException("configuration");
+            }
+
+            String addCoolingQuerry = "INSERT INTO coolingConfiguration (quantity, cooling, configuration) VALUES (?, ?, ?)";
+            try{
+                for(HashMap.Entry<Cooling, Integer> cooling : coolings.entrySet()) {
+                    PreparedStatement psStorage = connection.prepareStatement(addCoolingQuerry);
+                    psStorage.setInt(1, cooling.getValue());
+                    psStorage.setString(2, cooling.getKey().getName());
+                    psStorage.setInt(3, configurationId);
+
+                    psStorage.executeUpdate();
+                }
+            }catch(SQLException ex){
+                throw new FailedToAddComponentException("configuration");
+            }
         }catch(SQLException e){
-            throw new FailedToAddComponentException("configuration");
-        }
-    }
-    @Override
-    public void addStorageConfiguration(StorageConfiguration conf) {
-        String addStorageQuerry = "INSERT INTO storageConfiguration (quantity, storage, configuration) VALUES (?, ?, ?)";
-        Connection connection = SingletonConnection.getInstance();
-        try{
-            PreparedStatement ps = connection.prepareStatement(addStorageQuerry);
-            ps.setInt(1,conf.getQuantity());
-            ps.setString(2,conf.getStorage());
-            ps.setInt(3,conf.getConfiguration());
-
-            ps.executeUpdate();
-        }catch(SQLException ex){
-            throw new FailedToAddComponentException("configuration");
-        }
-    }
-    @Override
-    public void addCoolingConfiguration(CoolingConfiguration conf) {
-        String addCoolingQuerry = "INSERT INTO coolingConfiguration (quantity, cooling, configuration) VALUES (?, ?, ?)";
-        Connection connection = SingletonConnection.getInstance();
-        try{
-            PreparedStatement ps = connection.prepareStatement(addCoolingQuerry);
-            ps.setInt(1,conf.getQuantity());
-            ps.setString(2,conf.getCooling());
-            ps.setInt(3,conf.getConfiguration());
-
-            ps.executeUpdate();
-        }catch(SQLException ex){
             throw new FailedToAddComponentException("configuration");
         }
     }

@@ -375,21 +375,7 @@ public class ConfiguratorPanel extends JPanel {
                 );
                 verifyConfiguration(configuration, addedStorages, addedCoolings);
 
-                int configId = appController.addConfiguration(configuration);
-                for(HashMap.Entry<Cooling, Integer> cooling : addedCoolings.entrySet()) {
-                    appController.addCoolingConfiguration(new CoolingConfiguration(
-                            cooling.getValue(),
-                            cooling.getKey().getName(),
-                            configId
-                    ));
-                }
-                for(HashMap.Entry<Storage, Integer> storage : addedStorages.entrySet()) {
-                    appController.addStorageConfiguration(new StorageConfiguration(
-                            storage.getValue(),
-                            storage.getKey().getName(),
-                            configId
-                    ));
-                }
+                appController.addConfiguration(configuration, addedStorages, addedCoolings);
                 JOptionPane.showMessageDialog(null, "Ajout réussi !", "Validation",JOptionPane.INFORMATION_MESSAGE);
                 resetForm();
             }catch(EmptyFieldException | FailedToAddComponentException | IncompatibleComponentException | InvalidQuantityException ex){

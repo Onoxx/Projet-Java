@@ -5,6 +5,7 @@ import DAO.Configuration.ConfigurationDAOImpl;
 import MVC.Model.*;
 
 import java.util.Date;
+import java.util.HashMap;
 
 public class ConfigurationManager{
     private ConfigurationDAO configurationDAO;
@@ -13,14 +14,8 @@ public class ConfigurationManager{
         this.configurationDAO = new ConfigurationDAOImpl();
     }
 
-    public int addConfiguration(Configuration conf) {
-        return configurationDAO.addConfiguration(conf);
-    }
-    public void addStorageConfiguration(StorageConfiguration storageConfiguration) {
-        configurationDAO.addStorageConfiguration(storageConfiguration);
-    }
-    public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration) {
-        configurationDAO.addCoolingConfiguration(coolingConfiguration);
+    public void addConfiguration(Configuration config, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings){
+        configurationDAO.addConfiguration(config, storages, coolings);
     }
     public int countConfiguration(Date date1, Date date2){
         return configurationDAO.countConfiguration(

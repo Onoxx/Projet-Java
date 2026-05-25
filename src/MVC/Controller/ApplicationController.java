@@ -5,6 +5,7 @@ import MVC.Model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ApplicationController {
     private ProcessorManager processorManager;
@@ -61,10 +62,9 @@ public class ApplicationController {
     public Processor getProcessor(String processorName) {
         return processorManager.getProcessor(processorName);
     }
-
-    public int addConfiguration(Configuration configuration) { return configurationManager.addConfiguration(configuration);}
-    public void addStorageConfiguration(StorageConfiguration storageConfiguration){configurationManager.addStorageConfiguration(storageConfiguration);}
-    public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration){configurationManager.addCoolingConfiguration(coolingConfiguration);}
+    public void addConfiguration(Configuration config, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings){
+        configurationManager.addConfiguration(config, storages, coolings);
+    }
     public int countConfiguration(Date date1, Date date2){
         return configurationManager.countConfiguration(date1, date2);
     }
