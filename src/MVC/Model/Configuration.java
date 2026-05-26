@@ -24,27 +24,21 @@ public class Configuration {
     public User getUser() {
         return user;
     }
-
     public Processor getProcessor() {
         return processor;
     }
-
     public GraphicCard getGraphicCard() {
         return graphicCard;
     }
-
     public Case getComputerCase() {
         return computerCase;
     }
-
     public MotherBoard getMotherBoard() {
         return motherBoard;
     }
-
     public Ram getRam() {
         return ram;
     }
-
     public Date getDate() {
         return date;
     }

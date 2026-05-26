@@ -12,9 +12,8 @@ import java.util.Arrays;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
-    private JPanel centerPanel;
-    private JMenu appMenu, configuratorMenu, componentMenu, userMenu;
-    private JMenuItem home, quit, processor, openConfigurator;
+    private JMenu appMenu, configuratorMenu, componentMenu, userMenu, statsMenu;
+    private JMenuItem home, quit, processor, openConfigurator, statsMenuItem;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -70,6 +69,20 @@ public class MainWindow extends JFrame {
         userMenu.setDisplayedMnemonicIndex(0);
         menuBar.add(userMenu);
 
+        statsMenu = new JMenu("Statistiques");
+        statsMenu.setMnemonic(KeyEvent.VK_5);
+        statsMenu.setDisplayedMnemonicIndex(0);
+        menuBar.add(statsMenu);
+        statsMenuItem = new JMenuItem("Open");
+        statsMenu.add(statsMenuItem);
+        statsMenuItem.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.add(new StatisticsPanel());
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+
         menuBar.add(Box.createHorizontalGlue()); //colle les éléments a droite de la menuBar
         uiMode = new JToggleButton("DarkMode");
         uiMode.addActionListener(e -> {
@@ -112,7 +125,6 @@ public class MainWindow extends JFrame {
                 this.repaint();
             }
         });
-
         setVisible(true);
     }
 }

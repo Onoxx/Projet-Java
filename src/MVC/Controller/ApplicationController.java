@@ -4,7 +4,7 @@ import BusinessLogic.*;
 import MVC.Model.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 
 public class ApplicationController {
     private ProcessorManager processorManager;
@@ -61,16 +61,11 @@ public class ApplicationController {
     public Processor getProcessor(String processorName) {
         return processorManager.getProcessor(processorName);
     }
-    public GraphicCard getGraphicCard(String cardName) {return graphicCardManager.getGraphicCardByName(cardName);}
-    public Case getCaseByName(String caseName){return caseManager.getCaseByName(caseName);}
-    public MotherBoard getMotherBoardByName(String motherBoardName){return motherBoardManager.getMotherBoardByName(motherBoardName);}
-    public Ram getRamByName(String ramName){return ramManager.getRamByName(ramName);}
-    public User getUserById(int id) {return userManager.getUserById(id);}
 
-    public void verifyConfiguration(Configuration configuration, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings) {
-        configurationManager.verifyConfiguration(configuration, storages, coolings);
-    }
     public int addConfiguration(Configuration configuration) { return configurationManager.addConfiguration(configuration);}
     public void addStorageConfiguration(StorageConfiguration storageConfiguration){configurationManager.addStorageConfiguration(storageConfiguration);}
     public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration){configurationManager.addCoolingConfiguration(coolingConfiguration);}
+    public int countConfiguration(Date date1, Date date2){
+        return configurationManager.countConfiguration(date1, date2);
+    }
 }
