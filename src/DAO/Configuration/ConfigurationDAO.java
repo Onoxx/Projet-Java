@@ -11,4 +11,5 @@ public interface ConfigurationDAO {
     void addCoolingConfiguration(CoolingConfiguration conf);
 
     ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB);
+    ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard);
 }

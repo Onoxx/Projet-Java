@@ -27,6 +27,11 @@ Use these combinations for application-wide commands:
 * **Quit Application**: `Ctrl` + `X`
     * *Immediately closes the application.*
 
+## Search functionnality
+We implemented 3 searches:
+1. Motherboard search (All 3 criteria are mandatory).
+2. Configuration search (All 3 criteria are mandatory).
+3. Storage and cooling search (Only the motherboard field is mandatory, the other 2 are optionnal).
 ---
-**Tip:** These shortcuts are designed to improve your user experience by removing the use of the mouse.
+App designed and implemented by Leo Clarinval and Noa Forseille, all rights reserved.
 

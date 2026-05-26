@@ -141,4 +141,62 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
         }
         return configurationSearches;
     }
+
+    @Override
+    public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
+        StringBuilder querryBuild = new StringBuilder("SELECT c.id AS configurationId, c.user as userId, c.creationDate, s.capacity AS storageCapacity, s.readingSpeed, s.writingSpeed, co.type AS coolingType, co.length as coolingLength, co.height as coolingHeight FROM configuration c JOIN storageConfiguration sc ON c.id = sc.configuration JOIN storage s ON sc.storage = s.name JOIN coolingConfiguration cc ON c.id = cc.configuration JOIN cooling co ON cc.cooling = co.name JOIN motherboard mb ON c.motherBoard = mb.name WHERE mb.name = ?");
+        if (!storageName.isEmpty()) {
+            querryBuild.append(" AND s.name = ?");
+        }
+        if (!coolingName.isEmpty()) {
+            querryBuild.append(" AND co.name = ?");
+        }
+        String querry = querryBuild.toString();
+        ArrayList<StorageCoolingSearch> storageCoolingSearches = new ArrayList<>();
+        Connection connection = SingletonConnection.getInstance();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+            int index = 1;
+
+            preparedStatement.setString(index++, motherBoard);
+
+            if (!storageName.isEmpty()) {
+                preparedStatement.setString(index++, storageName);
+            }
+
+            if (!coolingName.isEmpty()) {
+                preparedStatement.setString(index++, coolingName);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int configurationId = resultSet.getInt("configurationId");
+                int userId = resultSet.getInt("userId");
+                Date creationDate = resultSet.getDate("creationDate");
+
+                int storageCapacity = resultSet.getInt("storageCapacity");
+                int readingSpeed = resultSet.getInt("readingSpeed");
+                int writingSpeed = resultSet.getInt("writingSpeed");
+
+                String coolingType = resultSet.getString("coolingType");
+                int coolingLength = resultSet.getInt("coolingLength");
+                int coolingHeight = resultSet.getInt("coolingHeight");
+
+                StorageCoolingSearch storageCoolingSearch = new StorageCoolingSearch(
+                        configurationId,
+                        userId,
+                        creationDate,
+                        storageCapacity,
+                        readingSpeed,
+                        writingSpeed,
+                        coolingType,
+                        coolingLength,
+                        coolingHeight
+                );
+                storageCoolingSearches.add(storageCoolingSearch);
+            }
+        } catch (SQLException ex) {
+            throw new FailedToGetComponentException("configuration");
+        }
+        return storageCoolingSearches;
+    }
 }

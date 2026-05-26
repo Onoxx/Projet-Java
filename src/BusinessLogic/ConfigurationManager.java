@@ -31,6 +31,11 @@ public class ConfigurationManager implements ConfigurationDAO {
         return configurationDAO.searchConfigByUserDateRGB(user, age, hasRGB);
     }
 
+    @Override
+    public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
+        return configurationDAO.searchConfigWithStorageCooling(storageName, coolingName, motherBoard);
+    }
+
     public void verifyConfiguration(Configuration configuration, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings) {
         Processor currentProcessor = configuration.getProcessor();
         GraphicCard currentGraphicCard = configuration.getGraphicCard();

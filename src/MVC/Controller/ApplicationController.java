@@ -81,4 +81,7 @@ public class ApplicationController {
     public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
         return configurationManager.searchConfigByUserDateRGB(user, age, hasRGB);
     }
+    public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
+        return configurationManager.searchConfigWithStorageCooling(storageName, coolingName, motherBoard);
+    }
 }
