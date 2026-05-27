@@ -9,14 +9,14 @@ public class ConfigurationSearch {
     private double boostFrequence;
     private String graphicCardName;
     private String chipset;
-    private int vRamCapacity;
+    private Integer vRamCapacity;
     private String vRamType;
     private String ramName;
     private int capacity;
     private int nbRamSticks;
     private String ramType;
 
-    public ConfigurationSearch(int configurationId, String processorName, int nbCores, double baseFrequence, double boostFrequence, String graphicCardName, String chipset, int vRamCapacity, String vRamType, String ramName, int capacity, int nbRamSticks, String ramType) {
+    public ConfigurationSearch(int configurationId, String processorName, int nbCores, double baseFrequence, double boostFrequence, String graphicCardName, String chipset, Integer vRamCapacity, String vRamType, String ramName, int capacity, int nbRamSticks, String ramType) {
         this.configurationId = configurationId;
         this.processorName = processorName;
         this.nbCores = nbCores;
@@ -60,7 +60,7 @@ public class ConfigurationSearch {
         return chipset;
     }
 
-    public int getvRamCapacity() {
+    public Integer getvRamCapacity() {
         return vRamCapacity;
     }
 
