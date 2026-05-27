@@ -10,14 +10,12 @@ public class StorageConfiguration {
         this.storage = storage;
         this.configuration = configuration;
     }
+
     public int getQuantity() {
         return quantity;
     }
-
     public String getStorage() {
         return storage;
     }
-    public int getConfiguration() {
-        return configuration;
-    }
+    public int getConfiguration(){return configuration;}
 }

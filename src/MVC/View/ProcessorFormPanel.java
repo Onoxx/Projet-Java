@@ -34,8 +34,8 @@ public class ProcessorFormPanel extends JPanel {
         this.mainWindow = mainWindow;
         this.appController = new ApplicationController();
         this.processor = processor;
-        JPanel formPanel = getFormPanel(processor);
-        this.add(formPanel, BorderLayout.NORTH);
+        JPanel formPanelCompleted = getFormPanel(processor);
+        this.add(formPanelCompleted, BorderLayout.NORTH);
         setVisible(true);
     }
     private JPanel getFormPanel(Processor processor) {

@@ -66,18 +66,16 @@ public class ApplicationController {
     public Processor getProcessor(String processorName) {
         return processorManager.getProcessor(processorName);
     }
-    public GraphicCard getGraphicCard(String cardName) {return graphicCardManager.getGraphicCardByName(cardName);}
-    public Case getCaseByName(String caseName){return caseManager.getCaseByName(caseName);}
-    public MotherBoard getMotherBoardByName(String motherBoardName){return motherBoardManager.getMotherBoardByName(motherBoardName);}
-    public Ram getRamByName(String ramName){return ramManager.getRamByName(ramName);}
-    public User getUserById(int id) {return userManager.getUserById(id);}
 
-    public void verifyConfiguration(Configuration configuration, HashMap<Storage, Integer> storages, HashMap<Cooling, Integer> coolings) {
-        configurationManager.verifyConfiguration(configuration, storages, coolings);
-    }
     public int addConfiguration(Configuration configuration) { return configurationManager.addConfiguration(configuration);}
     public void addStorageConfiguration(StorageConfiguration storageConfiguration){configurationManager.addStorageConfiguration(storageConfiguration);}
     public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration){configurationManager.addCoolingConfiguration(coolingConfiguration);}
+    public double computeTotalPrice(Configuration config){
+        return configurationManager.computeTotalPrice(config);
+    }
+    public ArrayList<Configuration> getConfigurations(){
+        return configurationManager.getConfigurations();
+    }
     public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
         return configurationManager.searchConfigByUserDateRGB(user, age, hasRGB);
     }

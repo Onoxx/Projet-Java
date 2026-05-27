@@ -13,8 +13,8 @@ import java.util.Arrays;
 public class MainWindow extends JFrame {
     private Container mainContainer;
     private JPanel centerPanel;
-    private JMenu appMenu, configuratorMenu, componentMenu, searchMenu;
-    private JMenuItem home, quit, processor, openConfigurator, motherBoardRamBrand, configurationSearch, storageCoolingSearch;
+    private JMenu appMenu, configuratorMenu, componentMenu, userMenu, searchMenu, statsMenu;
+    private JMenuItem home, quit, processor, openConfigurator,statsMenuItem,motherBoardRamBrand, configurationSearch, storageCoolingSearch;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -97,6 +97,20 @@ public class MainWindow extends JFrame {
         searchMenu.add(storageCoolingSearch);
         menuBar.add(searchMenu);
 
+        statsMenu = new JMenu("Statistiques");
+        statsMenu.setMnemonic(KeyEvent.VK_5);
+        statsMenu.setDisplayedMnemonicIndex(0);
+        menuBar.add(statsMenu);
+        statsMenuItem = new JMenuItem("Open");
+        statsMenu.add(statsMenuItem);
+        statsMenuItem.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.add(new StatisticsPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+
         menuBar.add(Box.createHorizontalGlue()); //colle les éléments a droite de la menuBar
         uiMode = new JToggleButton("DarkMode");
         uiMode.addActionListener(e -> {
@@ -139,7 +153,6 @@ public class MainWindow extends JFrame {
                 this.repaint();
             }
         });
-
         setVisible(true);
     }
 }
