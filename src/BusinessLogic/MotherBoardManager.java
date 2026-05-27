@@ -3,6 +3,7 @@ package BusinessLogic;
 import DAO.MotherBoard.MotherBoardDAO;
 import DAO.MotherBoard.MotherBoardDAOImpl;
 import MVC.Model.MotherBoard;
+import MVC.Model.MotherBoardRamBrand;
 
 import java.util.ArrayList;
 
@@ -15,5 +16,12 @@ public class MotherBoardManager {
     }
     public MotherBoard getMotherBoardByName(String name) {
         return motherBoardDAO.getMotherBoardByName(name);
+    }
+    public ArrayList<MotherBoardRamBrand> searchByFormatRamMaxPrice(
+            String format,
+            String ramName,
+            double maxPrice
+    ) {
+        return motherBoardDAO.searchByFormatRamMaxPrice(format, ramName, maxPrice);
     }
 }

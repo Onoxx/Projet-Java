@@ -1,9 +1,7 @@
 package DAO.Configuration;
 
-import MVC.Model.Configuration;
-import MVC.Model.CoolingConfiguration;
-import MVC.Model.StorageConfiguration;
-
+import MVC.Model.*;
+import java.util.ArrayList;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -13,4 +11,6 @@ public interface ConfigurationDAO {
     void addCoolingConfiguration(CoolingConfiguration conf);
     Configuration getConfiguration(int id);
     ArrayList<Configuration> getConfigurations();
+    ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB);
+    ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard);
 }

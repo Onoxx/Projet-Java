@@ -5,6 +5,7 @@ import MVC.Model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ApplicationController {
     private ProcessorManager processorManager;
@@ -53,6 +54,10 @@ public class ApplicationController {
     public ArrayList<GraphicCard> getAllGraphicCards() {return graphicCardManager.getAllGraphicCards();}
     public ArrayList<Case> getAllCases() {return caseManager.getAllCases();}
     public ArrayList<MotherBoard> getAllMotherBoards() {return motherBoardManager.getAllMotherBoards();}
+    public ArrayList<MotherBoardRamBrand> searchByFormatRamMaxPrice(
+            String format, String ramName, double maxPrice) {
+        return motherBoardManager.searchByFormatRamMaxPrice(format, ramName, maxPrice);
+    }
     public ArrayList<Ram> getallRams() {return ramManager.getAllRams();}
     public ArrayList<User> getAllUsers(){return userManager.getAllUsers();}
     public ArrayList<Storage> getAllStorages(){return storageManager.getAllStorages();}
@@ -70,5 +75,11 @@ public class ApplicationController {
     }
     public ArrayList<Configuration> getConfigurations(){
         return configurationManager.getConfigurations();
+    }
+    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
+        return configurationManager.searchConfigByUserDateRGB(user, age, hasRGB);
+    }
+    public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
+        return configurationManager.searchConfigWithStorageCooling(storageName, coolingName, motherBoard);
     }
 }

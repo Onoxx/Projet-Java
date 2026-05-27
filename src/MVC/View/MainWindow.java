@@ -12,8 +12,9 @@ import java.util.Arrays;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
-    private JMenu appMenu, configuratorMenu, componentMenu, userMenu, statsMenu;
-    private JMenuItem home, quit, processor, openConfigurator, statsMenuItem;
+    private JPanel centerPanel;
+    private JMenu appMenu, configuratorMenu, componentMenu, userMenu, searchMenu, statsMenu;
+    private JMenuItem home, quit, processor, openConfigurator,statsMenuItem,motherBoardRamBrand, configurationSearch, storageCoolingSearch;
     private JToggleButton uiMode;
 
     public MainWindow() {
@@ -64,10 +65,37 @@ public class MainWindow extends JFrame {
         componentMenu.add(processor);
         menuBar.add(componentMenu);
 
-        userMenu = new JMenu("Users");
-        userMenu.setMnemonic(KeyEvent.VK_4);
-        userMenu.setDisplayedMnemonicIndex(0);
-        menuBar.add(userMenu);
+        searchMenu = new JMenu("Search");
+        searchMenu.setMnemonic(KeyEvent.VK_4);
+        searchMenu.setDisplayedMnemonicIndex(0);
+        motherBoardRamBrand = new JMenuItem("Search motherboards");
+        motherBoardRamBrand.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new SearchMotherBoardPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+        searchMenu.add(motherBoardRamBrand);
+        configurationSearch = new JMenuItem("search configurations");
+        configurationSearch.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new SearchConfigurationPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+        searchMenu.add(configurationSearch);
+        storageCoolingSearch = new JMenuItem("search coolings/storages");
+        storageCoolingSearch.addActionListener(e -> {
+            this.getContentPane().removeAll();
+            this.getContentPane().add(new SearchStorageCoolingPanel(this));
+            UIMode.applyCurrentTheme(this);
+            this.revalidate();
+            this.repaint();
+        });
+        searchMenu.add(storageCoolingSearch);
+        menuBar.add(searchMenu);
 
         statsMenu = new JMenu("Statistiques");
         statsMenu.setMnemonic(KeyEvent.VK_5);

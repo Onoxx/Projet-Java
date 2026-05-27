@@ -72,7 +72,7 @@ public class ProcessorFormPanel extends JPanel {
         formPanel.add(hasNbThreadsLabel);
         hasNbThreadsField = new JCheckBox();
         formPanel.add(hasNbThreadsField);
-        hasNbThreadsField.addActionListener(e ->{
+        hasNbThreadsField.addActionListener(e -> {
             boolean enabled = hasNbThreadsField.isSelected();
             nbThreadsField.setEnabled(enabled);
             if(!enabled){

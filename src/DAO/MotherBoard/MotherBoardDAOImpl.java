@@ -4,6 +4,7 @@ import DAO.SingletonConnection;
 import Exceptions.AllComponentsException;
 import Exceptions.FailedToGetComponentException;
 import MVC.Model.MotherBoard;
+import MVC.Model.MotherBoardRamBrand;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,5 +63,46 @@ public class MotherBoardDAOImpl implements MotherBoardDAO {
             throw new FailedToGetComponentException("carte mère");
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<MotherBoardRamBrand> searchByFormatRamMaxPrice(String format, String ramName, double maxPrice) {
+        String querry = "SELECT mb.name AS motherBoardName, mb.model, mb.nbRamSlots, r.type as ramType, r.capacity AS ramCapacity, r.frequency, b.name as brandName, b.website, b.country FROM motherboard mb JOIN ram r ON mb.ramType = r.type JOIN brand b ON mb.brand = b.name WHERE mb.format = ? AND r.name = ? AND mb.price <= ?";
+        ArrayList<MotherBoardRamBrand> motherBoardRamBrands = new ArrayList<>();
+        Connection connection = SingletonConnection.getInstance();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+            preparedStatement.setString(1,format);
+            preparedStatement.setString(2,ramName);
+            preparedStatement.setDouble(3,maxPrice);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                String motherBoardName = resultSet.getString("motherBoardName");
+                String motherBoardmodel = resultSet.getString("model");
+                int nbRamSlots = resultSet.getInt("nbRamSlots");
+                String ramType = resultSet.getString("ramType");
+                int ramCapacity = resultSet.getInt("ramCapacity");
+                double frequency = resultSet.getDouble("frequency");
+                String brandName = resultSet.getString("brandName");
+                String website = resultSet.getString("website") ;
+                String country = resultSet.getString("country");
+
+                MotherBoardRamBrand motherBoardRamBrand = new MotherBoardRamBrand(
+                        motherBoardName,
+                        motherBoardmodel,
+                        nbRamSlots,
+                        ramType,
+                        ramCapacity,
+                        frequency,
+                        brandName,
+                        website,
+                        country
+                        );
+                motherBoardRamBrands.add(motherBoardRamBrand);
+            }
+        } catch (SQLException ex) {
+            throw new FailedToGetComponentException("carte mère");
+        }
+        return motherBoardRamBrands;
     }
 }
