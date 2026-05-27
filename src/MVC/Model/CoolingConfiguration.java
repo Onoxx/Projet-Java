@@ -16,7 +16,5 @@ public class CoolingConfiguration {
     public String getCooling() {
         return cooling;
     }
-    public int getConfiguration() {
-        return configuration;
-    }
+    public int getConfiguration() {return configuration;}
 }
