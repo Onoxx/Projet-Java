@@ -91,7 +91,7 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
 
     @Override
     public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
-        String querry = "SELECT c.id AS configurationId, p.name AS processorName, p.nbCores, p.baseFrequence, p.boostFrequence, g.name AS graphicCardName, g.chipset, g.capacity AS vRamCapacity, g.vRamType, r.name AS ramName, r.capacity, r.nbRamSticks, r.type AS ramType FROM configuration c JOIN processor p ON c.processor = p.name JOIN graphicCard g ON c.graphicCard = g.name JOIN ram r ON c.ram = r.name JOIN user u ON c.user = u.id JOIN computercase cc ON c.computerCase = cc.name WHERE u.name = ? AND c.creationDate <= DATE_SUB(NOW(), INTERVAL ? MONTH) AND cc.hasRGB = ?";
+        String querry = "SELECT c.id AS configurationId, p.name AS processorName, p.nbCores, p.baseFrequence, p.boostFrequence, g.name AS graphicCardName, g.chipset, g.capacity AS vRamCapacity, g.vRamType, r.name AS ramName, r.capacity, r.nbRamSticks, r.type AS ramType FROM configuration c JOIN processor p ON c.processor = p.name LEFT JOIN graphicCard g ON c.graphicCard = g.name JOIN ram r ON c.ram = r.name JOIN user u ON c.user = u.id JOIN computercase cc ON c.computerCase = cc.name WHERE u.name = ? AND c.creationDate <= DATE_SUB(NOW(), INTERVAL ? MONTH) AND cc.hasRGB = ?";
         ArrayList<ConfigurationSearch> configurationSearches = new ArrayList<>();
         Connection connection = SingletonConnection.getInstance();
         try {
@@ -111,7 +111,7 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
 
                 String graphicCardName = resultSet.getString("graphicCardName");
                 String chipset = resultSet.getString("chipset");
-                int vRamCapacity = resultSet.getInt("vRamCapacity");
+                Integer vRamCapacity = (Integer) resultSet.getObject("vRamCapacity");
                 String vRamType = resultSet.getString("vRamType");
 
                 String ramName = resultSet.getString("ramName");
