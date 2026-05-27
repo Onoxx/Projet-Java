@@ -200,7 +200,6 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
         }
         return storageCoolingSearches;
     }
-}
     @Override
     public Configuration getConfiguration(int id) {
         return null;
