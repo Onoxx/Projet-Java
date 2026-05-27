@@ -77,7 +77,7 @@ public class MainWindow extends JFrame {
         statsMenu.add(statsMenuItem);
         statsMenuItem.addActionListener(e -> {
             this.getContentPane().removeAll();
-            this.add(new StatisticsPanel());
+            this.add(new StatisticsPanel(this));
             UIMode.applyCurrentTheme(this);
             this.revalidate();
             this.repaint();

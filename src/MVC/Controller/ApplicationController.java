@@ -65,7 +65,10 @@ public class ApplicationController {
     public int addConfiguration(Configuration configuration) { return configurationManager.addConfiguration(configuration);}
     public void addStorageConfiguration(StorageConfiguration storageConfiguration){configurationManager.addStorageConfiguration(storageConfiguration);}
     public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration){configurationManager.addCoolingConfiguration(coolingConfiguration);}
-    public int countConfiguration(Date date1, Date date2){
-        return configurationManager.countConfiguration(date1, date2);
+    public double computeTotalPrice(Configuration config){
+        return configurationManager.computeTotalPrice(config);
+    }
+    public ArrayList<Configuration> getConfigurations(){
+        return configurationManager.getConfigurations();
     }
 }

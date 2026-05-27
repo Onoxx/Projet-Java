@@ -371,6 +371,8 @@ public class ConfiguratorPanel extends JPanel {
                         computerCase,
                         motherBoard,
                         ram,
+                        addedStorages,
+                        addedCoolings,
                         new Date()
                 );
                 verifyConfiguration(configuration, addedStorages, addedCoolings);

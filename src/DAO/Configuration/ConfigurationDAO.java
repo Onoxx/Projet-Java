@@ -5,10 +5,12 @@ import MVC.Model.CoolingConfiguration;
 import MVC.Model.StorageConfiguration;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public interface ConfigurationDAO {
     int addConfiguration(Configuration conf);
     void addStorageConfiguration(StorageConfiguration conf);
     void addCoolingConfiguration(CoolingConfiguration conf);
-    int countConfiguration(Date date1, Date date2);
+    Configuration getConfiguration(int id);
+    ArrayList<Configuration> getConfigurations();
 }
