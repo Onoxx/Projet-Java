@@ -6,6 +6,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class SingletonConnection {
     private static Connection uniqueConnection;
+    private SingletonConnection() {}
+
     public static Connection getInstance(){
         if(uniqueConnection == null) {
             try{

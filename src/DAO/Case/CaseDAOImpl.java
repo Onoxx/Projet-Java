@@ -37,30 +37,4 @@ public class CaseDAOImpl implements CaseDAO {
         }
         return cases;
     }
-    @Override
-    public Case getCaseByName(String caseName) {
-        String querry = "SELECT * FROM computercase WHERE name = ?";
-        Connection connection = SingletonConnection.getInstance();
-        try{
-            PreparedStatement statement = connection.prepareStatement(querry);
-            statement.setString(1, caseName);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
-                String format = resultSet.getString("format");
-                int maxLengthGPU = resultSet.getInt("maxLengthGPU");
-                int maxHeightVentirad = resultSet.getInt("maxHeightVentirad");
-                int nbFans = resultSet.getInt("nbFans");
-                boolean hasRGB = resultSet.getBoolean("hasRGB");
-                String brand = resultSet.getString("brand");
-
-                return new Case(name,format,brand,price, maxLengthGPU, maxHeightVentirad, nbFans, hasRGB);
-            }
-
-        }catch (SQLException ex){
-            throw new AllComponentsException("boitiers");
-        }
-        return null;
-    }
 }

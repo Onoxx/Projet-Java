@@ -45,10 +45,6 @@ public class MotherBoardRamBrand {
         return ramCapacity;
     }
 
-    public double getFrequency() {
-        return frequency;
-    }
-
     public String getBrandName() {
         return brandName;
     }

@@ -34,24 +34,8 @@ public class Cooling {
         return brand;
     }
 
-    public int getLength() {
-        return length;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getDepth() {
-        return depth;
-    }
-
-    public int getTdp() {
-        return tdp;
     }
 
     public double getPrice() {

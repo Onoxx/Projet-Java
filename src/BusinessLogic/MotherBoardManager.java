@@ -14,9 +14,6 @@ public class MotherBoardManager {
     public ArrayList<MotherBoard> getAllMotherBoards() {
         return motherBoardDAO.getAllMotherBoards();
     }
-    public MotherBoard getMotherBoardByName(String name) {
-        return motherBoardDAO.getMotherBoardByName(name);
-    }
     public ArrayList<MotherBoardRamBrand> searchByFormatRamMaxPrice(
             String format,
             String ramName,
