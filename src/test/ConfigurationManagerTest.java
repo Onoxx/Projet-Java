@@ -1,3 +1,5 @@
+package test;
+
 import BusinessLogic.ConfigurationManager;
 import MVC.Model.*;
 import org.junit.jupiter.api.BeforeEach;
