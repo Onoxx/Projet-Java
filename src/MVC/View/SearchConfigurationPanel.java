@@ -107,19 +107,15 @@ public class SearchConfigurationPanel extends JPanel {
 
         tableModel = new DefaultTableModel(
                 new Object[]{
-                        "Configuration",
                         "Processeur",
-                        "Cœurs",
                         "Fréquence base",
                         "Fréquence boost",
                         "Carte graphique",
                         "Chipset",
                         "VRAM",
-                        "Type VRAM",
                         "RAM",
                         "Capacité RAM",
                         "Nombre barrettes",
-                        "Type RAM"
                 },
                 0
         );
@@ -142,19 +138,15 @@ public class SearchConfigurationPanel extends JPanel {
 
         for (ConfigurationSearch result : results) {
             tableModel.addRow(new Object[]{
-                    result.getConfigurationId(),
                     result.getProcessorName(),
-                    result.getNbCores(),
                     result.getBaseFrequence(),
                     result.getBoostFrequence(),
                     result.getGraphicCardName(),
                     result.getChipset(),
                     result.getvRamCapacity(),
-                    result.getvRamType(),
                     result.getRamName(),
                     result.getCapacity(),
                     result.getNbRamSticks(),
-                    result.getRamType()
             });
         }
     }
