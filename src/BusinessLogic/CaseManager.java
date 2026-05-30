@@ -15,7 +15,4 @@ public class CaseManager {
     public ArrayList<Case> getAllCases() {
         return caseDAO.getAllCases();
     }
-    public Case getCaseByName(String name) {
-        return caseDAO.getCaseByName(name);
-    }
 }

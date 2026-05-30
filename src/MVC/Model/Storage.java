@@ -24,24 +24,8 @@ public class Storage {
         return type;
     }
 
-    public String getInterfaceStorage() {
-        return interfaceStorage;
-    }
-
     public String getBrand() {
         return brand;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getWritingSpeed() {
-        return writingSpeed;
-    }
-
-    public int getReadingSpeed() {
-        return readingSpeed;
     }
 
     public double getPrice() {

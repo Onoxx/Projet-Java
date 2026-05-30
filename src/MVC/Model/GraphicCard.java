@@ -29,34 +29,9 @@ public class GraphicCard {
         return name;
     }
 
-    public String getChipset() {
-        return chipset;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public String getVramType() {
-        return vramType;
-    }
-
     public int getLength() {
         return length;
     }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getDepth() {
-        return depth;
-    }
-
-    public int getTdp() {
-        return tdp;
-    }
-
     public double getPrice() {
         return price;
     }
