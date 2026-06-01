@@ -8,6 +8,6 @@ public interface ConfigurationDAO {
     void addStorageConfiguration(StorageConfiguration conf);
     void addCoolingConfiguration(CoolingConfiguration conf);
     ArrayList<Configuration> getConfigurations();
-    ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB);
+    ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, Date date, boolean hasRGB);
     ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard);
 }

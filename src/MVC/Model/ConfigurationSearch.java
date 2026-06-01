@@ -67,4 +67,5 @@ public class ConfigurationSearch {
     public int getNbRamSticks() {
         return nbRamSticks;
     }
+
 }

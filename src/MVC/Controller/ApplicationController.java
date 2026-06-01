@@ -4,6 +4,7 @@ import BusinessLogic.*;
 import MVC.Model.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ApplicationController {
     private ProcessorManager processorManager;
@@ -74,8 +75,9 @@ public class ApplicationController {
     public ArrayList<Configuration> getConfigurations(){
         return configurationManager.getConfigurations();
     }
-    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
-        return configurationManager.searchConfigByUserDateRGB(user, age, hasRGB);
+
+    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, Date date, boolean hasRGB) {
+        return configurationManager.searchConfigByUserDateRGB(user, date, hasRGB);
     }
     public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
         return configurationManager.searchConfigWithStorageCooling(storageName, coolingName, motherBoard);

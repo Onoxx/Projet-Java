@@ -10,11 +10,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class SearchConfigurationPanel extends JPanel {
     private JComboBox<String> rgbComboBox;
     private JComboBox userComboBox;
-    private JSpinner monthsSpinner;
+    private JSpinner dateSpinner;
     private JButton backButton, validateButton, resetButton;
     private JTable resultTable;
     private DefaultTableModel tableModel;
@@ -47,15 +49,22 @@ public class SearchConfigurationPanel extends JPanel {
                 "Non"
         });
 
-        monthsSpinner = new JSpinner(
-                new SpinnerNumberModel(1, 0, 120, 1)
-        );
+        dateSpinner = new JSpinner(new SpinnerDateModel(
+                new Date(),
+                null,
+                null,
+                Calendar.DAY_OF_MONTH
+        ));
+        JSpinner.DateEditor editor =
+                new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy");
+
+        dateSpinner.setEditor(editor);
 
         formPanel.add(new JLabel("Utilisateur :"));
         formPanel.add(userComboBox);
 
-        formPanel.add(new JLabel("Ancienneté en mois :"));
-        formPanel.add(monthsSpinner);
+        formPanel.add(new JLabel("Date minimale d'ancienneté :"));
+        formPanel.add(dateSpinner);
 
         formPanel.add(new JLabel("Boîtier RGB :"));
         formPanel.add(rgbComboBox);
@@ -93,7 +102,7 @@ public class SearchConfigurationPanel extends JPanel {
         resetButton.addActionListener(e -> {
             userComboBox.setSelectedIndex(0);
             rgbComboBox.setSelectedIndex(0);
-            monthsSpinner.setValue(0);
+            dateSpinner.setValue(new Date());
         });
 
         buttonPanel.add(backButton);
@@ -128,13 +137,13 @@ public class SearchConfigurationPanel extends JPanel {
 
     private void searchConfigurations() {
         User user = (User) userComboBox.getSelectedItem();
-        int months = (int) monthsSpinner.getValue();
+        Date selectedDate = (Date) dateSpinner.getValue();
         boolean hasRGB = rgbComboBox.getSelectedItem().equals("Oui");
 
         tableModel.setRowCount(0);
 
         ArrayList<ConfigurationSearch> results =
-                appController.searchConfigByUserDateRGB(user, months, hasRGB);
+                appController.searchConfigByUserDateRGB(user, selectedDate, hasRGB);
 
         for (ConfigurationSearch result : results) {
             tableModel.addRow(new Object[]{
