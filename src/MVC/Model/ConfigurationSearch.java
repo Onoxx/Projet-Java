@@ -32,16 +32,8 @@ public class ConfigurationSearch {
         this.ramType = ramType;
     }
 
-    public int getConfigurationId() {
-        return configurationId;
-    }
-
     public String getProcessorName() {
         return processorName;
-    }
-
-    public int getNbCores() {
-        return nbCores;
     }
 
     public double getBaseFrequence() {
@@ -64,10 +56,6 @@ public class ConfigurationSearch {
         return vRamCapacity;
     }
 
-    public String getvRamType() {
-        return vRamType;
-    }
-
     public String getRamName() {
         return ramName;
     }
@@ -80,7 +68,4 @@ public class ConfigurationSearch {
         return nbRamSticks;
     }
 
-    public String getRamType() {
-        return ramType;
-    }
 }

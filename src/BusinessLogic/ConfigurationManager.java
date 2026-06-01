@@ -5,6 +5,7 @@ import DAO.Configuration.ConfigurationDAOImpl;
 import MVC.Model.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ConfigurationManager {
@@ -23,8 +24,8 @@ public class ConfigurationManager {
     public void addCoolingConfiguration(CoolingConfiguration coolingConfiguration) {
         configurationDAO.addCoolingConfiguration(coolingConfiguration);
     }
-    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, int age, boolean hasRGB) {
-        return configurationDAO.searchConfigByUserDateRGB(user, age, hasRGB);
+    public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, Date date, boolean hasRGB) {
+        return configurationDAO.searchConfigByUserDateRGB(user, new java.sql.Date(date.getTime()), hasRGB);
     }
 
     public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
