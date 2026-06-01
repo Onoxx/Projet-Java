@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 public class MainWindow extends JFrame {
     private Container mainContainer;
-    private JPanel centerPanel;
     private JMenu appMenu, configuratorMenu, componentMenu, userMenu, searchMenu, statsMenu;
     private JMenuItem home, quit, processor, openConfigurator,statsMenuItem,motherBoardRamBrand, configurationSearch, storageCoolingSearch;
     private JToggleButton uiMode;

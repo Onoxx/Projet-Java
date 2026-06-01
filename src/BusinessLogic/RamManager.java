@@ -12,5 +12,4 @@ public class RamManager {
     public ArrayList<Ram> getAllRams(){
         return ramDAO.getAllRams();
     }
-    public Ram getRamByName(String name){return ramDAO.getRamByName(name);}
 }

@@ -40,10 +40,6 @@ public class MotherBoard {
         return brand;
     }
 
-    public int getNbRamSlots() {
-        return nbRamSlots;
-    }
-
     public double getPrice() {
         return price;
     }

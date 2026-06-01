@@ -18,7 +18,6 @@ public class SocketDAOImpl implements SocketDAO {
         Connection connection = SingletonConnection.getInstance();
         try {
             PreparedStatement statement = connection.prepareStatement(querry);
-            // setString du nom pour la recherche
             ResultSet data = statement.executeQuery();
             while(data.next()){
                 String name = data.getString("name");

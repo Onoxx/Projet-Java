@@ -15,7 +15,4 @@ public class GraphicCardManager {
     public ArrayList<GraphicCard> getAllGraphicCards() {
         return graphicCardDAO.getAllGraphicCards();
     }
-    public GraphicCard getGraphicCardByName(String name) {
-        return graphicCardDAO.getGraphicCardByName(name);
-    }
 }

@@ -41,33 +41,4 @@ public class GraphicCardDAOImpl implements GraphicCardDAO {
         }
         return graphicCards;
     }
-    @Override
-    public GraphicCard getGraphicCardByName(String graphicCardDame) {
-        String querry = "SELECT * FROM graphiccard WHERE name = ?";
-        Connection connection = SingletonConnection.getInstance();
-        try{
-            PreparedStatement ps = connection.prepareStatement(querry);
-            ps.setString(1, graphicCardDame);
-            ResultSet data = ps.executeQuery();
-            if(data.next()){
-                String name = data.getString("name");
-                String chipset = data.getString("chipset");
-                int capacity = data.getInt("capacity");
-                String vramType = data.getString("vramType");
-                int length = data.getInt("length");
-                int height = data.getInt("height");
-                int depth = data.getInt("depth");
-                int tdp = data.getInt("tdp");
-                double price = data.getDouble("price");
-                String brand = data.getString("brand");
-
-                GraphicCard graphicCard = new GraphicCard(name,chipset, capacity, vramType, length, height, depth, tdp, price, brand);
-                return graphicCard;
-
-            }
-        }catch(SQLException e){
-            throw new FailedToGetComponentException("carte graphique");
-        }
-        return null;
-    }
 }

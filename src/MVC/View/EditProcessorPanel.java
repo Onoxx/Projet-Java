@@ -20,7 +20,7 @@ public class EditProcessorPanel extends JPanel {
             Processor processor = appController.getProcessor(processorName);
             this.add(new ProcessorFormPanel(mainWindow, processor), BorderLayout.CENTER);
         }catch(FailedToGetComponentException e){
-            JOptionPane.showMessageDialog(mainWindow, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         setVisible(true);
     }
