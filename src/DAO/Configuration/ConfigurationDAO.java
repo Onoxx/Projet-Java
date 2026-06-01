@@ -2,6 +2,7 @@ package DAO.Configuration;
 
 import MVC.Model.*;
 import java.util.ArrayList;
+import java.sql.Date;
 
 public interface ConfigurationDAO {
     int addConfiguration(Configuration conf);
