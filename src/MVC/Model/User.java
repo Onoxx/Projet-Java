@@ -10,8 +10,6 @@ public class User {
         this.name = name;
         this.email = email;
     }
-
-    public String getEmail() {return email;}
     public String getName() {return name;}
     public int getId() {return id;}
     @Override

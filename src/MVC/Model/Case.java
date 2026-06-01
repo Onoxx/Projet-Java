@@ -41,13 +41,6 @@ public class Case {
         return maxHeightVentirad;
     }
 
-    public int getNbFans() {
-        return nbFans;
-    }
-
-    public boolean isHasRGB() {
-        return hasRGB;
-    }
     @Override
     public String toString(){
         return name;

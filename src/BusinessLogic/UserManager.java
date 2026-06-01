@@ -13,7 +13,4 @@ public class UserManager {
     public ArrayList<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
-    public User getUserById(int id) {
-        return userDAO.getUserById(id);
-    }
 }

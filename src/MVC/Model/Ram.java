@@ -27,18 +27,6 @@ public class Ram {
         return brand;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getNbRamSticks() {
-        return nbRamSticks;
-    }
-
-    public int getFrequency() {
-        return frequency;
-    }
-
     public double getPrice() {
         return price;
     }

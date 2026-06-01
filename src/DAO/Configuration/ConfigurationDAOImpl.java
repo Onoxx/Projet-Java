@@ -89,7 +89,6 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
             throw new FailedToAddComponentException("configuration");
         }
     }
-
     @Override
     public ArrayList<ConfigurationSearch> searchConfigByUserDateRGB(User user, Date date, boolean hasRGB) {
         String querry = "SELECT c.id AS configurationId, p.name AS processorName, p.nbCores, p.baseFrequence, p.boostFrequence, g.name AS graphicCardName, g.chipset, g.capacity AS vRamCapacity, g.vRamType, r.name AS ramName, r.capacity, r.nbRamSticks, r.type AS ramType FROM configuration c LEFT JOIN processor p ON c.processor = p.name LEFT JOIN graphicCard g ON c.graphicCard = g.name LEFT JOIN ram r ON c.ram = r.name JOIN user u ON c.user = u.id JOIN computercase cc ON c.computerCase = cc.name WHERE u.name = ? AND c.creationDate <= ? AND cc.hasRGB = ?";
@@ -142,7 +141,6 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
         }
         return configurationSearches;
     }
-
     @Override
     public ArrayList<StorageCoolingSearch> searchConfigWithStorageCooling(String storageName, String coolingName, String motherBoard) {
         StringBuilder querryBuild = new StringBuilder("SELECT c.id AS configurationId, c.user as userId, c.creationDate, s.capacity AS storageCapacity, s.readingSpeed, s.writingSpeed, co.type AS coolingType, co.length as coolingLength, co.height as coolingHeight FROM configuration c JOIN storageConfiguration sc ON c.id = sc.configuration JOIN storage s ON sc.storage = s.name JOIN coolingConfiguration cc ON c.id = cc.configuration JOIN cooling co ON cc.cooling = co.name JOIN motherboard mb ON c.motherBoard = mb.name WHERE mb.name = ?");
@@ -199,10 +197,6 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
             throw new FailedToGetComponentException("configuration");
         }
         return storageCoolingSearches;
-    }
-    @Override
-    public Configuration getConfiguration(int id) {
-        return null;
     }
     @Override
     public ArrayList<Configuration> getConfigurations() {

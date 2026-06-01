@@ -42,7 +42,6 @@ public class ConfiguratorPanel extends JPanel {
         formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10,10,10,10);
-        constraints.anchor = GridBagConstraints.CENTER;
         constraints.gridy = 0;
 
         constraints.gridx = 0;

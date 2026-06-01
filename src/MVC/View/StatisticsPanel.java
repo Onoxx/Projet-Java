@@ -111,28 +111,27 @@ public class StatisticsPanel extends JPanel {
     private void refreshTable() {
         tableModel.setRowCount(0);
         Configuration config = (Configuration) configurationComboBox.getSelectedItem();
-        if (config == null) return;
+        if (config != null){
+            addComponentRow("Processeur",     config.getProcessor()    != null ? config.getProcessor().getName()    : null,
+                    config.getProcessor()    != null ? config.getProcessor().getPrice()   : 0, 1);
+            addComponentRow("Carte graphique",config.getGraphicCard()  != null ? config.getGraphicCard().getName()  : null,
+                    config.getGraphicCard()  != null ? config.getGraphicCard().getPrice() : 0, 1);
+            addComponentRow("Boitier",        config.getComputerCase() != null ? config.getComputerCase().getName() : null,
+                    config.getComputerCase() != null ? config.getComputerCase().getPrice(): 0, 1);
+            addComponentRow("Carte mère",     config.getMotherBoard()  != null ? config.getMotherBoard().getName()  : null,
+                    config.getMotherBoard()  != null ? config.getMotherBoard().getPrice() : 0, 1);
+            addComponentRow("RAM",            config.getRam()          != null ? config.getRam().getName()          : null,
+                    config.getRam()          != null ? config.getRam().getPrice()         : 0, 1);
+            for (HashMap.Entry<Storage, Integer> entry : config.getStorages().entrySet()) {
+                addComponentRow("Stockage", entry.getKey().getName(), entry.getKey().getPrice(), entry.getValue());
+            }
+            for (HashMap.Entry<Cooling, Integer> entry : config.getCoolings().entrySet()) {
+                addComponentRow("Refroidissement", entry.getKey().getName(), entry.getKey().getPrice(), entry.getValue());
+            }
 
-        addComponentRow("Processeur",     config.getProcessor()    != null ? config.getProcessor().getName()    : null,
-                config.getProcessor()    != null ? config.getProcessor().getPrice()   : 0, 1);
-        addComponentRow("Carte graphique",config.getGraphicCard()  != null ? config.getGraphicCard().getName()  : null,
-                config.getGraphicCard()  != null ? config.getGraphicCard().getPrice() : 0, 1);
-        addComponentRow("Boitier",        config.getComputerCase() != null ? config.getComputerCase().getName() : null,
-                config.getComputerCase() != null ? config.getComputerCase().getPrice(): 0, 1);
-        addComponentRow("Carte mère",     config.getMotherBoard()  != null ? config.getMotherBoard().getName()  : null,
-                config.getMotherBoard()  != null ? config.getMotherBoard().getPrice() : 0, 1);
-        addComponentRow("RAM",            config.getRam()          != null ? config.getRam().getName()          : null,
-                config.getRam()          != null ? config.getRam().getPrice()         : 0, 1);
-
-        for (HashMap.Entry<Storage, Integer> entry : config.getStorages().entrySet()) {
-            addComponentRow("Stockage", entry.getKey().getName(), entry.getKey().getPrice(), entry.getValue());
+            double total = appController.computeTotalPrice(config);
+            totalLabel.setText("Total : " + String.format("%.2f", total) + " €");
         }
-        for (HashMap.Entry<Cooling, Integer> entry : config.getCoolings().entrySet()) {
-            addComponentRow("Refroidissement", entry.getKey().getName(), entry.getKey().getPrice(), entry.getValue());
-        }
-
-        double total = appController.computeTotalPrice(config);
-        totalLabel.setText("Total : " + String.format("%.2f", total) + " €");
     }
 
     private void addComponentRow(String type, String name, double price, int quantity) {
